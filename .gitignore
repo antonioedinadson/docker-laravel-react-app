@@ -1,0 +1,44 @@
+# API
+/api/.phpunit.cache
+/api/node_modules
+/api/public/build
+/api/public/hot
+/api/public/storage
+/api/storage/*.key
+/api/vendor
+/api/.env
+/api/.env.backup
+/api/.env.production
+/api/.phpunit.result.cache
+/api/Homestead.json
+/api/Homestead.yaml
+/api/auth.json
+/api/npm-debug.log
+/api/yarn-error.log
+/api/.fleet
+/api/.idea
+/api/.vscode
+
+# CLIENT
+/client/logs
+/client/*.log
+/client/npm-debug.log*
+/client/yarn-debug.log*
+/client/yarn-error.log*
+/client/pnpm-debug.log*
+/client/lerna-debug.log*
+/client/node_modules
+/client/dist
+/client/.env
+/client/dist-ssr
+/client/*.local
+/client/# Editor directories and files
+/client/.vscode/*
+/client/!.vscode/extensions.json
+/client/.idea
+/client/.DS_Store
+/client/*.suo
+/client/*.ntvs*
+/client/*.njsproj
+/client/*.sln
+/client/*.sw?
