@@ -1,32 +1,47 @@
 version: '3.8'
+
 services:
-  react:
+
+  # CLIENT APP
+  client:
     image: react-app:1.0
     container_name: react-app
     stdin_open: true
     build:
       context: ./client
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     ports:
-      - "4500:4500"
+      - "80:80"
     environment:
       - CHOKIDAR_USEPOLLING=true
     volumes:
       - "./client:/app:delegated"
       - /app/node_modules
 
-  api:
+  # WEB SERVER
+  php-fpm:
     build:
       context: ./api
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./api:/var/www
+    networks:
+      - laravel
+
+  # NGINX
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
     ports:
       - "8000:80"
-    image: laravel-app:1.0
     volumes:
-      - ./:/usr/share/nginx
+      - ./api:/var/www
+      - ./.docker/nginx/:/etc/nginx/conf.d/
     networks:
-      - api-network
+      - laravel
 
 networks:
-  api-network:
+  laravel:
     driver: bridge
